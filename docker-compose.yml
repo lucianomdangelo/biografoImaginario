@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    container_name: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=biografo_imaginario
+      - MYSQL_ROOT_HOST=web 
+      - MYSQL_USER=dbwebapp
+      - MYSQL_PASSWORD=dbwebapp
+      - DOCKER_DB_ROOT_PASSWORD=root
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    networks:
+     - db
+    volumes:
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+
+  web:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file: ./.env.production
+    container_name: web
+    ports:
+      - 3000:3000
+    networks:
+     - db
+
+networks:
+  db:
+    driver: bridge

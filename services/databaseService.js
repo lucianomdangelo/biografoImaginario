@@ -3,11 +3,11 @@ import * as bcrypt from "bcryptjs"
 const knex = require('knex')({
     client: 'mysql',
     connection: {
-        host : process.env.DB_HOST,
-        port : 3306,
-        user : process.env.DB_USER,
-        password : process.env.DB_PASS,
-        database : process.env.DB,
+        host : process.env.MYSQLDB_HOST,
+        port : process.env.MYSQLDB_PORT,
+        user : process.env.MYSQLDB_USER,
+        password : process.env.MYSQLDB_PASSWORD,
+        database : process.env.MYSQLDB_DATABASE,
     }
 });
 
