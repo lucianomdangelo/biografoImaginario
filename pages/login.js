@@ -40,15 +40,13 @@ export default function Login() {
                         </div> */}
 
                         <div className="container">
-                            <label htmlFor="uname"><b>Username</b></label>
-                            <input type="text" placeholder="Enter Username" name="uname" required
-                                onChange={usernameHandler}/>
+                            <label htmlFor="uname"><b>Nombre de usuario</b></label>
+                            <input type="text" placeholder="Ingresar usuario" name="uname" required onChange={usernameHandler}/>
 
-                            <label htmlFor="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="psw" required
-                                onChange={passwordHandler}/>
+                            <label htmlFor="psw"><b>Contraseña</b></label>
+                            <input type="password" placeholder="Ingresar contraseña" name="psw" required onChange={passwordHandler}/>
 
-                            <button type="submit">Login</button>
+                            <button type="submit">Iniciar sesion</button>
                         </div>
                 </form>}</>}
     </div>;

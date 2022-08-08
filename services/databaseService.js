@@ -22,9 +22,9 @@ const databaseServiceFactory = () => {
         return user[0];
     };
 
-    const createUser = async (username, password) => {
+    const createUser = async (username, password, email, name) => {
         const hashedpwd = await bcrypt.hashSync(password, 10);
-        const user = await knex(TABLE).insert({username: username, password: hashedpwd}); /// TODO catch errors
+        const user = await knex(TABLE).insert({username: username, password: hashedpwd, email: email, name:name}); /// TODO catch errors
         if (user.length === 0) {
             throw new Error("User not found");
         } 

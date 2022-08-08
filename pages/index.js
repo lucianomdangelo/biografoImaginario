@@ -9,7 +9,7 @@ export default function Home({ user }) {
         <title>Home</title>
       </Head>
 
-      <h2>Welcome to the home page {user.username}!</h2>
+      <h2>Welcome to the home page {user?.username}!</h2>
     </div>
   )
 }
@@ -17,7 +17,7 @@ export default function Home({ user }) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
   const user = req.session.get("user");
 
-  if (user === undefined) {
+  if (!user?.username) {
     res.setHeader("location", "/login");
     res.statusCode = 302;
     res.end();

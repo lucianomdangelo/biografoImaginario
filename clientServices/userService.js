@@ -5,8 +5,8 @@ const userServiceFactory = () => {
         return axios.post(`/api/auth`, { username, password });
     }
 
-    function register(username, password) {
-        return axios.post(`/api/create_user`, { username, password });
+    function register(username, password, email, name) {
+        return axios.post(`/api/create_user`, { username, password, email, name });
     }
 
     return {login, register};

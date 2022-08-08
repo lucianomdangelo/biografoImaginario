@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS biografo_imaginario;
 
 -- CREATE USER 'dbwebapp'@'%' IDENTIFIED BY 'dbwebapp';
 -- GRANT ALL PRIVILEGES ON biografo_imaginario.* TO 'dbwebapp'@'%';
+-- ALTER USER 'dbwebapp'@'localhost' IDENTIFIED WITH mysql_native_password BY 'dbwebapp';
 
 USE biografo_imaginario;
 
