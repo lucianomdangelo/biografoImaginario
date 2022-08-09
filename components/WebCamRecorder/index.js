@@ -1,7 +1,7 @@
 import React from "react";
 import Webcam from "react-webcam";
 
-const WebCamRecorder = () => {
+const WebCamRecorder = (sumbit) => {
     const webcamRef = React.useRef(null);
     const mediaRecorderRef = React.useRef(null);
     const [capturing, setCapturing] = React.useState(false);
@@ -49,6 +49,15 @@ const WebCamRecorder = () => {
         setRecordedChunks([]);
       }
     }, [recordedChunks]);
+
+    const sendVideo = React.useCallback(() => {
+      if (recordedChunks.length) {
+        const blob = new Blob(recordedChunks, {
+          type: "video/webm"
+        });
+        sumbit(blob);
+      }
+    }, [recordedChunks]);
   
     return (
       <>
@@ -61,13 +70,12 @@ const WebCamRecorder = () => {
         {recordedChunks.length > 0 && (
           <button onClick={handleDownload}>Download</button>
         )}
+        {recordedChunks.length > 0 && (
+          <button onClick={sendVideo}>Send</button>
+        )}
       </>
     );
   };
 
 
 module.exports = WebCamRecorder;
-// ReactDOM.render(<WebcamStreamCapture />, document.getElementById("root"));
-  
-  // https://www.npmjs.com/package/react-webcam
-  
