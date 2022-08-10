@@ -1,6 +1,9 @@
 import React from "react";
 import Webcam from "react-webcam";
 
+import { videoServiceFactory } from "../../clientServices/videoService";
+const videoService = videoServiceFactory();
+
 const WebCamRecorder = (sumbit) => {
     const webcamRef = React.useRef(null);
     const mediaRecorderRef = React.useRef(null);
@@ -50,18 +53,23 @@ const WebCamRecorder = (sumbit) => {
       }
     }, [recordedChunks]);
 
-    const sendVideo = React.useCallback(() => {
+    const sendVideo = () => {
       if (recordedChunks.length) {
         const blob = new Blob(recordedChunks, {
           type: "video/webm"
         });
-        sumbit(blob);
+
+        var videoFile = new File([blob], "video");
+        const formData = new FormData();
+        formData.append('video', videoFile);
+
+        videoService.uploadVideo(formData);
       }
-    }, [recordedChunks]);
+    };
   
     return (
       <>
-        <Webcam audio={false} ref={webcamRef} />
+        <Webcam audio={true} muted={true} ref={webcamRef} />
         {capturing ? (
           <button onClick={handleStopCaptureClick}>Stop Capture</button>
         ) : (

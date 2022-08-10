@@ -20,7 +20,7 @@ DROP SCHEMA IF EXISTS `biografo_imaginario` ;
 CREATE SCHEMA IF NOT EXISTS `biografo_imaginario` DEFAULT CHARACTER SET utf8 ;
 USE `biografo_imaginario` ;
 
-CREATE USER 'dbwebapp'@'%' IDENTIFIED BY 'dbwebapp';
+CREATE USER IF NOT EXISTS 'dbwebapp'@'%' IDENTIFIED BY 'dbwebapp';
 GRANT ALL PRIVILEGES ON biografo_imaginario.* TO 'dbwebapp'@'%';
 
 -- -----------------------------------------------------
